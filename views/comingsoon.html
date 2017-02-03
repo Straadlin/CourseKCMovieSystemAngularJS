@@ -1,0 +1,9 @@
+<table class="table table-striped">
+    <tbody>
+        <!--<tr ng-repeat="movie in movies | orderBy: 'release_date'">-->
+        <tr ng-repeat="movie in movies">
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.release_date | date: "dd/MM/yyyy" | releaseDate }}</td>
+        </tr>
+    </tbody>
+</table>

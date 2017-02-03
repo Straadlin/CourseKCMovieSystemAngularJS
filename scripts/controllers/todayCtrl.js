@@ -1,0 +1,5 @@
+angular.module('myMoviesSeriesApp').controller('todayCtrl', ['$scope', function($scope) {//Injection of dependences
+
+    //Code;
+    
+}]);
