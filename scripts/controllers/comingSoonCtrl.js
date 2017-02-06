@@ -1,7 +1,19 @@
 // Promises: Way 1
-angular.module("myMoviesSeriesApp").controller("comingSoonCtrl", ["$scope", "$filter", "Movies", function($scope, $filter, Movies) {//Injection of dependences
+angular.module("myMoviesSeriesApp").controller("comingSoonCtrl", ["$scope", "$filter", "Movies", "ApiService", "$location", function($scope, $filter, Movies, ApiService, $location) {//Injection of dependencies
     
     $scope.movies = $filter("orderBy")(Movies.data.results, "release_date");
+
+    /*$scope.pathImage = function(path){
+
+        return ApiService.getPathImage(45, path)
+    };*/
+
+    $scope.seeDetail = function(id){
+
+        // The function $location.path will show the next view
+        // Search is to concat parameters in the url like JSON format
+        $location.path("/movies/moviesdetails/").search({ idMovie: id });
+    };
     
 }]);
 /*angular.module("myMoviesSeriesApp").controller("comingSoonCtrl", ["$scope", "ApiService", "$filter", function ($scope, ApiService, $filter) {//Injection of dependences

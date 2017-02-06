@@ -1,4 +1,4 @@
-angular.module('myMoviesSeriesApp').controller('broadcastCtrl', ['$scope', function($scope) {//Injection of dependences
+angular.module('myMoviesSeriesApp').controller('broadcastCtrl', ['$scope', function($scope) {//Injection of dependencies
 
     //Code;
     

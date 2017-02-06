@@ -5,6 +5,7 @@ angular.module("myMoviesSeriesApp").config(['$routeSegmentProvider', "$routeProv
     $routeSegmentProvider.when('/movies', 'movies');// Level 0
     $routeSegmentProvider.when('/movies/comingsoon', 'movies.comingsoon');// Level 1
     $routeSegmentProvider.when('/movies/billboard', 'movies.billboard');// Level 1
+    $routeSegmentProvider.when("/movies/moviesdetails", "movies.moviesdetails");// Level 1
     $routeSegmentProvider.when('/series', 'series');// Level 0
     $routeSegmentProvider.when('/series/today', 'series.today');// Level 1
     $routeSegmentProvider.when('/series/broadcast', 'series.broadcast');// Level 1
@@ -36,6 +37,17 @@ angular.module("myMoviesSeriesApp").config(['$routeSegmentProvider', "$routeProv
     $routeSegmentProvider.within('movies').segment('billboard', {
         controller: 'billboardCtrl',
         templateUrl: 'views/billboard.html'
+    });
+
+    $routeSegmentProvider.within("movies").segment("moviesdetails", {
+        controller: "moviesDetailsCtrl",
+        templateUrl: "views/moviesDetails.html",
+        resolve: {
+            Movie: ["ApiService", "$routeParams", function(ApiService, $routeParams){
+
+                return ApiService.consultApi("movie/" + $routeParams.idMovie);
+            }]
+        }
     });
 
     $routeSegmentProvider.segment('series', {

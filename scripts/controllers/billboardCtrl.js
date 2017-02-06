@@ -1,4 +1,4 @@
-angular.module("myMoviesSeriesApp").controller("billboardCtrl", ["$scope", "ApiService", function($scope, ApiService) {//Injection of dependences
+angular.module("myMoviesSeriesApp").controller("billboardCtrl", ["$scope", "ApiService", function($scope, ApiService) {//Injection of dependencies
 
     ApiService
     .consultApi("movie/now_playing")
