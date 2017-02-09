@@ -1,6 +1,6 @@
 Controllers
-Directives
-Filters
+Directives  <- Ever returns a JSON file
+Filters     <- Ever returns a function
 Services
 Values
 Constants
@@ -13,6 +13,7 @@ $routeParams
 
 =Services=
 $filter
+$compile
 
 =Directives=
 ng-controller
@@ -20,3 +21,4 @@ ng-click
 ng-app
 ng-repeat
 ng-src
+ng-bind

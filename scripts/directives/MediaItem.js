@@ -20,6 +20,8 @@ angular.module("myMoviesSeriesApp").directive("mediaItem", ["ApiService", functi
             scope.clickOnMedia = function(id){
 
                 // It must return JSON file
+                // When I have to return some data, we must to send them through the params
+                // and with JSON format
                 scope.whenSelect({ mediaId: id });
             };
         }

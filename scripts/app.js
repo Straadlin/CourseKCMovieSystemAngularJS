@@ -23,7 +23,7 @@ angular.module("myMoviesSeriesApp").config(['$routeSegmentProvider', "$routeProv
         controller: 'comingSoonCtrl',
         templateUrl: 'views/comingsoon.html',
         resolve: {
-            // All dependences that I want to
+            // All dependencies that I want to
             Movies: ["ApiService", function (ApiService) {
 
                 return ApiService.consultApi("movie/upcoming");
@@ -36,7 +36,17 @@ angular.module("myMoviesSeriesApp").config(['$routeSegmentProvider', "$routeProv
 
     $routeSegmentProvider.within('movies').segment('billboard', {
         controller: 'billboardCtrl',
-        templateUrl: 'views/billboard.html'
+        templateUrl: 'views/billboard.html',
+        resolve: {
+            // All dependencies that I want to
+            Movies: ["ApiService", function (ApiService) {
+
+                return ApiService.consultApi("movie/now_playing");
+            }]
+        },
+        resolveFailed: [
+            // This block it'll execute if there are error with some dependence in the Resolve
+        ]
     });
 
     $routeSegmentProvider.within("movies").segment("moviesdetails", {
@@ -66,3 +76,8 @@ angular.module("myMoviesSeriesApp").config(['$routeSegmentProvider', "$routeProv
     });
 
 }]);
+
+/*angular.module("myMoviesSeriesApp").run(["$rootScope", function($rootScope){
+    $rootScope.apiUrl = "";
+    $rootScope.apiVersion = "";
+}]);*/

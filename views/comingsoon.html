@@ -1,6 +1,11 @@
+
+
+
 <header><h4>Comingsoon</h4></header>
 <table class="table table-striped">
     <tbody>
+        <!--I'm subscribing to the function whenSelect and then, I'll be executing
+        the seeDetail method sending its parameters-->
         <tr ng-repeat="movie in movies" media-item data="movie" when-select="seeDetail(mediaId)"></tr>
         <!--<tr ng-repeat="movie in movies">
             <td><img class="img-circle" ng-src="{{ pathImage(movie.poster_path) }}" /></td>

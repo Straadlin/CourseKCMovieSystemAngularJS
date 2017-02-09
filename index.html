@@ -4,6 +4,27 @@
         <meta charset="utf-8" />
         <title>Movies and Series</title>
 
+        <!-- Styles -->
+        <link rel="stylesheet" href="styles/css/bootstrap.css" />
+        <link rel="stylesheet" href="styles/css/styles.css" />
+    </head>
+    <body>
+
+        <div class="container">
+            <header>
+                <h1>Movies and Series</h1>
+            </header>
+            <nav ng-controller="navigationCtrl">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{'active': pathIsMovies() }"><a href="#/movies">Movies</a></li>
+                    <li ng-class="{'active': pathIsSeries() }"><a href="#/series">Series</a></li>
+                </ul>
+            </nav>
+
+            <section app-view-segment="0"></section>
+
+        </div>
+
         <!-- Libraries -->
         <script src="https://code.angularjs.org/1.2.27/angular.min.js"></script>
         <script src="https://code.angularjs.org/1.2.27/angular-route.min.js"></script>
@@ -34,9 +55,8 @@
 
         <!-- Directives -->
         <script src="scripts/directives/MediaItem.js"></script>
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="styles/bootstrap.css" />
+        <script src="scripts/directives/Vote.js"></script>
+        <script src="scripts/directives/Genres.js"></script>
 
         <!--Originals-->
         <!--<script src='https://code.angularjs.org/1.2.27/angular.js'></script>
@@ -45,23 +65,8 @@
 
         <!--<script src='scripts/controllers/indexCtrl.js'></script>-->
         <!--<script src='scripts/controllers/controllerBCtrl.js'></script>-->
-    </head>
-    <body>
 
-        <div class="container">
-            <header>
-                <h1>Movies and Series</h1>
-            </header>
-            <nav ng-controller="navigationCtrl">
-                <ul class="nav nav-tabs">
-                    <li ng-class="{'active': pathIsMovies() }"><a href="#/movies">Movies</a></li>
-                    <li ng-class="{'active': pathIsSeries() }"><a href="#/series">Series</a></li>
-                </ul>
-            </nav>
-
-            <section app-view-segment="0"></section>
-
-        </div>
+        <!-------------------------------------------------------------------------->
 
         <!--<div ng-controller='indexCtrl'>-->
             <!--Notifications-->
