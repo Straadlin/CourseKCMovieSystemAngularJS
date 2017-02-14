@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <script src="https://code.angularjs.org/1.2.27/angular.min.js"></script>
+        <script src="vendor/tmhDynamicLocale.js"></script>
+        <script src="vendor/angular-translate.js"></script>
+        <!--<script src="https://code.angularjs.org/1.6.1/i18n/angular-locale_es-mx.js"></script>
+        <script src="https://code.angularjs.org/1.6.1/i18n/angular-locale_en-us.js"></script>-->
+    </head>
+    <body ng-app="i18n">
+
+        <div ng-controller="LocaleController">
+
+            <!--Translate as filter-->
+            <!--Key between single quotes-->
+            <h1>{{ 'titleH1' | translate }}</h1>
+            <!--Translate as directive-->
+            <h2 translate>titleH2</h2>
+            <!--Translate as service-->
+            <h3>{{ lastTitle }}</h3>
+            <h4>{{ 'Movies.Upcoming.Title' }}</h4>
+
+            <div>Badge: {{ badge | currency }}</div>
+            <div>Date: {{ date | date }}</div>
+            <div>Capital letter: {{ phrase | uppercase }}</div>
+
+            <button ng-click="changeLocale()">Change Locale</button>
+        </div>
+        <script>
+            angular.module("i18n", ["tmh.dynamicLocale", "pascalprecht.translate"]);
+
+            angular.module("i18n").config(["tmhDynamicLocaleProvider", function(tmhDynamicLocaleProvider){
+
+                // We know where we must search the location files
+                tmhDynamicLocaleProvider.localeLocationPattern("https://code.angularjs.org/1.6.1/i18n/angular-locale_{{ locale }}.js");
+                //tmhDynamicLocaleProvider.localeLocationPattern("vendor/angular-locale_{{ locale }}.js");
+            }]);
+
+            // The translations module can give us:  translations, directives, filters and services
+            angular.module("i18n").config(["$translateProvider", function($translateProvider){
+
+                // Collections of languages or Translates play
+                // titleH1,... are keys
+                $translateProvider.translations("es-es",{
+                    "titleH1": "Jugando con i18n",
+                    "titleH2": "Este es un subtítulo",
+                    "titleH3": "Y este otro más...",
+                    "Movies": {
+                        "Title": "Películas",
+                        "Upcoming": {
+                            "Title": "Próximamente"
+                        }
+                    }
+                });
+
+                $translateProvider.translations("en-us",{
+                    "titleH1": "Playing with i18n",
+                    "titleH2": "This is a subtitle",
+                    "titleH3": "And this another...",
+                    "Movies": {
+                        "Title": "Movies",
+                        "Upcoming": {
+                            "Title": "Upcoming"
+                        }
+                    }
+                });
+
+                // We establish one default
+                $translateProvider.preferredLanguage("es-es");
+
+            }]);
+
+            angular.module("i18n").controller("LocaleController", ["$scope", "tmhDynamicLocale", "$translate", function($scope, tmhDynamicLocale, $translate){
+
+                var locale = "es-es";
+
+                tmhDynamicLocale.set(locale);
+
+                $scope.badge = 123.345;
+
+                $scope.date = new Date().getTime();
+
+                $scope.phrase = "EsTo Es UnA fRasE";
+
+                // Like service isn't necessary in this way
+                $translate("titleH3").then(function(translation){
+
+                    $scope.titleH3 = translation;
+                });
+
+                $scope.changeLocale = function(){
+
+                    locale = locale == "es-es" ? "en-us" : "es-es";
+
+                    tmhDynamicLocale.set(locale);
+
+                    $translate.use(locale);
+
+                    // Like service isn't necessary in this way
+                    $translate("titleH3").then(function(translation){
+
+                        $scope.titleH3 = translation;
+                    });
+                };
+            }]);
+        </script>
+    </body>
+</html>

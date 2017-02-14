@@ -10,6 +10,8 @@ $scope
 $filter
 $location
 $routeParams
+$routerSegment    <- External
+AngularDynamicLocate    <- External
 
 =Services=
 $filter
